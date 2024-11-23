@@ -42,7 +42,7 @@ const LoginForm = () => {
     if (email === "neeraj@aisv.in" && password === "neeraj@123") {
       Cookies.set("token", "static-login-token", { expires: 7 });
       alert("Login successful!");
-      // window.location.href = "/dashboard"; // Redirect to dashboard
+       window.location.href = "/dashboard"; 
     } else {
       alert("Invalid email or password. Please try again.");
     }
