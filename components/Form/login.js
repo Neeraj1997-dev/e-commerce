@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import {
   Form,
@@ -36,24 +36,35 @@ const LoginForm = () => {
     resolver: zodResolver(FormSchema),
   });
 
-  const staticLogin = (data) => {
-    const { email, password } = data;
+  const [isLoading, setIsLoading] = useState(false);
 
-    if (email === "neeraj@aisv.in" && password === "neeraj@123") {
-      Cookies.set("token", "static-login-token", { expires: 7 });
-      alert("Login successful!");
-       window.location.href = "/dashboard"; 
-    } else {
-      alert("Invalid email or password. Please try again.");
+  const staticLogin = async (data) => {
+    setIsLoading(true);
+    try {
+      // Simulate API login delay
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      const { email, password } = data;
+
+      if (email === "neeraj@aisv.in" && password === "neeraj@123") {
+        Cookies.set("token", "static-login-token", {
+          expires: 7,
+          secure: true,
+        });
+        alert("Login successful!");
+        window.location.href = "/dashboard";
+      } else {
+        alert("Invalid email or password. Please try again.");
+      }
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <Card className="w-full max-w-md mx-auto">
       <CardHeader>
-        <CardTitle className="text-2xl font-bold text-center">
-          Sign In
-        </CardTitle>
+        <CardTitle className="text-2xl font-bold text-center">Sign In</CardTitle>
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -67,7 +78,7 @@ const LoginForm = () => {
                   <FormControl>
                     <Input placeholder="Enter your email" {...field} />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage>{form.formState.errors.email?.message}</FormMessage>
                 </FormItem>
               )}
             />
@@ -84,12 +95,14 @@ const LoginForm = () => {
                       {...field}
                     />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage>
+                    {form.formState.errors.password?.message}
+                  </FormMessage>
                 </FormItem>
               )}
             />
-            <Button className="w-full" type="submit" variant="pinkBlue">
-              Sign In
+            <Button className="w-full" type="submit" disabled={isLoading}>
+              {isLoading ? "Signing In..." : "Sign In"}
             </Button>
           </form>
         </Form>
@@ -121,7 +134,6 @@ const LoginForm = () => {
             Register here
           </Link>
         </p>
-
         <p className="text-sm text-muted-foreground">
           Developed by{" "}
           <a
