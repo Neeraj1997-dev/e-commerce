@@ -33,7 +33,6 @@ const LoginFrom = () => {
     const { email, password } = data;
 
     if (email === "neeraj@aisv.in" && password === "neeraj@123") {
-      // Simulate setting a token cookie for successful login
       Cookies.set("token", "static-login-token", { expires: 7 });
       alert("Login successful!");
       // window.location.href = "/dashboard"; // Redirect to dashboard
