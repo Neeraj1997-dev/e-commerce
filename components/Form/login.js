@@ -14,7 +14,13 @@ import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "../Input/input";
 import { Button } from "../Button/button";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/Card/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/Card/card";
 
 import Cookies from "js-cookie";
 import { FcGoogle } from "react-icons/fc";
@@ -45,7 +51,9 @@ const LoginForm = () => {
   return (
     <Card className="w-full max-w-md mx-auto">
       <CardHeader>
-        <CardTitle className="text-2xl font-bold text-center">Sign In</CardTitle>
+        <CardTitle className="text-2xl font-bold text-center">
+          Sign In
+        </CardTitle>
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -70,7 +78,11 @@ const LoginForm = () => {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input type="password" placeholder="Enter your password" {...field} />
+                    <Input
+                      type="password"
+                      placeholder="Enter your password"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -101,7 +113,7 @@ const LoginForm = () => {
       </CardContent>
       <CardFooter className="flex flex-col items-center space-y-4">
         <p className="text-sm text-muted-foreground">
-          Don't have an account?{" "}
+          Don&apos;t have an account?{" "}
           <Link
             href="/register"
             className="font-medium text-primary underline underline-offset-4 hover:text-primary/80"
@@ -109,6 +121,7 @@ const LoginForm = () => {
             Register here
           </Link>
         </p>
+
         <p className="text-sm text-muted-foreground">
           Developed by{" "}
           <a
