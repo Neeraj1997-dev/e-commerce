@@ -20,7 +20,6 @@ module.exports = {
     },
     extend: {
       colors: {
-        'navy-blue': '#000080',
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
